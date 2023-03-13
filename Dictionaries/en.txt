@@ -1,0 +1,10 @@
+$ name = English
+$ description = Simple english dictionary
+$ alphabet = qwertyuiopasdfghjklzxcvbnm
+cow
+dog
+puppy
+building
+daughter
+acquirement
+archeology

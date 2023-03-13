@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A32ABC36-8B63-485E-8807-9EB1E5ED3549}</ProjectGuid>
+    <Keyword>QtVS_v304</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.22621.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.22621.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>Qt6.5.0_x64</QtInstall>
+    <QtModules>core</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+    <QMakeExtraArgs>DESTDIR = build/debug</QMakeExtraArgs>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>Qt6.5.0_x64</QtInstall>
+    <QtModules>core</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <OutDir>$(SolutionDir)Build-$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir).inter\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutDir>$(SolutionDir)Build-$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir).inter\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <PreBuildEvent>
+      <Command>xcopy "$(SolutionDir)Dictionaries\*.*" "$(TargetDir)Dictionaries" /Y /I /E</Command>
+    </PreBuildEvent>
+    <QtMoc>
+      <ModuleOutputFile>
+      </ModuleOutputFile>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+    </ClCompile>
+    <QtMoc>
+      <ModuleOutputFile>
+      </ModuleOutputFile>
+    </QtMoc>
+    <PreBuildEvent>
+      <Command>xcopy "$(SolutionDir)Dictionaries\*.*" "$(TargetDir)Dictionaries" /Y /I /E</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="alphabet_section.cpp" />
+    <ClCompile Include="console_helpers.cpp" />
+    <ClCompile Include="console_reader.cpp" />
+    <ClCompile Include="console_section.cpp" />
+    <ClCompile Include="dictionaries_menu.cpp" />
+    <ClCompile Include="dictionary.cpp" />
+    <ClCompile Include="dictionary_helpers.cpp" />
+    <ClCompile Include="game_controller.cpp" />
+    <ClCompile Include="game_over_menu.cpp" />
+    <ClCompile Include="game_result_section.cpp" />
+    <ClCompile Include="game_section.cpp" />
+    <ClCompile Include="game_state.cpp" />
+    <ClCompile Include="hangman.cpp" />
+    <ClCompile Include="hangman_draw_controller.cpp" />
+    <ClCompile Include="hangman_section.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main_menu_section.cpp" />
+    <ClCompile Include="menu_section.cpp" />
+    <ClCompile Include="menu_section_with_single_callback.cpp" />
+    <ClCompile Include="rect.cpp" />
+    <ClCompile Include="selected_dictionary_section.cpp" />
+    <ClCompile Include="string_utils.cpp" />
+    <ClCompile Include="target_word_section.cpp" />
+    <ClCompile Include="top_bar_section.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="alphabet_section.h" />
+    <ClInclude Include="char.h" />
+    <ClInclude Include="console_helpers.h" />
+    <ClInclude Include="console_reader.h" />
+    <ClInclude Include="console_section.h" />
+    <ClInclude Include="coord.h" />
+    <ClInclude Include="dictionaries_map.h" />
+    <ClInclude Include="dictionaries_menu.h" />
+    <ClInclude Include="dictionary.h" />
+    <ClInclude Include="dictionary_helpers.h" />
+    <ClInclude Include="dictionary_restrictions.h" />
+    <ClInclude Include="ascii_art.h" />
+    <ClInclude Include="game_controller.h" />
+    <ClInclude Include="game_controller_state.h" />
+    <ClInclude Include="game_over_menu.h" />
+    <ClInclude Include="game_result_section.h" />
+    <ClInclude Include="game_section.h" />
+    <ClInclude Include="game_state.h" />
+    <ClInclude Include="hangman_draw_controller.h" />
+    <ClInclude Include="hangman_section.h" />
+    <ClInclude Include="key_codes.h" />
+    <ClInclude Include="main_menu_section.h" />
+    <ClInclude Include="hangman.h" />
+    <ClInclude Include="menu_entry.h" />
+    <ClInclude Include="menu_entry_callback.h" />
+    <ClInclude Include="menu_section.h" />
+    <ClInclude Include="menu_section_with_single_callback.h" />
+    <ClInclude Include="open_letter_result.h" />
+    <ClInclude Include="rect.h" />
+    <ClInclude Include="section_rects.h" />
+    <ClInclude Include="selected_dictionary_section.h" />
+    <ClInclude Include="string_utils.h" />
+    <ClInclude Include="target_word_section.h" />
+    <ClInclude Include="top_bar_section.h" />
+    <ClInclude Include="version.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
